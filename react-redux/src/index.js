@@ -4,9 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//Provider allow us to inject the Global Store
+import { Provider} from 'react-redux'
+//we need to build the store now
+import { createStore } from 'redux'
+//import the reducers
+import reducer from './store/reducer';
+
+
+//store is created using reducer
+const store = createStore(reducer);
+
+//we need to pass the store as a property to the Provider. This way the store is available to the entire application
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>  
   </React.StrictMode>,
   document.getElementById('root')
 );
