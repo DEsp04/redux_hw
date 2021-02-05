@@ -17,7 +17,8 @@ function reducer(state = initialState, action) {
     return {
       ...state,
       age: state.age + action.value,
-      history: state.history.concat({id: Math.random(), age: state.age + action.value})
+      history: state.history.concat({ id: Math.random(), age: state.age + action.value }),
+      loading: state.loading = false
     }
 
   }
@@ -37,6 +38,13 @@ function reducer(state = initialState, action) {
     return {
       ...state,
       history: state.history.filter((el) => el.id !== action.key)
+    }
+  }
+
+  if (action.type === "LOADING") { 
+    return {
+      ...state,
+      loading: state.loading = true
     }
   }
 

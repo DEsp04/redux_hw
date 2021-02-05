@@ -1,8 +1,9 @@
 import './App.css';
 import React, { useState } from "react";
-
+import logo from "./logo.svg"
 //connect react to redux
 import { connect } from 'react-redux';
+import * as actionCreator from "./store/actions/actions";
 
 
 
@@ -26,6 +27,7 @@ function App(props) {
       <button onClick={props.onAgeUP}>Age UP</button>
       <button onClick={props.onAgeDown}>Age Down</button>
       <hr />
+      {props.loading && <img src={logo} className="App-logo" />}
       <div>History</div>
       <div>
         <ul>
@@ -50,7 +52,8 @@ const mapStateToProps = (state) => {
   //we will return an object with some data from the redux store and this object will serve as a prop to the App component
   return {
     age: state.age,
-    history: state.history
+    history: state.history,
+    loading: state.loading
   }
 }
 
@@ -59,9 +62,9 @@ const mapDispatchToProps = (dispatch) => {
   //we will return an object with two actions from the redux store and this object will serve as a prop to the App component
   //value is the payload in the action
   return {
-    onAgeUP: () => dispatch({type: 'AGE_UP', value: 1}),
-    onAgeDown: () => dispatch({ type: 'AGE_DOWN', value: 1 }),
-    onDelItem: (id) => dispatch({ type: 'DEL_ITEM', key: id})
+    onAgeUP: () => dispatch(actionCreator.ageUp(1)),
+    onAgeDown: () => dispatch(actionCreator.ageDown(1)),
+    onDelItem: (id) => dispatch(actionCreator.delItem(id))
   }
 }
 

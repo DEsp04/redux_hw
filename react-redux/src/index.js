@@ -10,6 +10,7 @@ import { Provider} from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 //import the reducers
 import reducer from './store/reducers/reducer';
+import thunk from "redux-thunk";
 
 
 /* Middleware:
@@ -19,19 +20,19 @@ import reducer from './store/reducers/reducer';
   -What we want to do is when an action is created we want to save or cache that action in the middleware, do the saving operation, and once we're done then the action can be send to the reducer.
   There is a middleware called thunk->  means executing an action within a function and call the function to execute the action.
 */
-const logAction = store => { 
-  return next => { 
-    return action => { 
-      const result = next(action);
-      console.log(`caught in the middleware ${JSON.stringify(result)}`);
-      return result;
-    }
-  }
-}
+// const logAction = store => { 
+//   return next => { 
+//     return action => { 
+//       const result = next(action);
+//       console.log(`caught in the middleware ${JSON.stringify(result)}`);
+//       return result;
+//     }
+//   }
+// }
 
 
 //store is created and we in the reducer
-const store = createStore(reducer, applyMiddleware(logAction));
+const store = createStore(reducer, applyMiddleware(thunk));
 
 //we need to pass the store as a property to the Provider. This way the store is available to the entire application
 ReactDOM.render(
