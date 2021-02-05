@@ -1,6 +1,7 @@
 //we will replace the hook state in App.js with store state. create initial state
 const initialState = {
-  age: 21
+  age: 21,
+  history: []
 };
 
 
@@ -11,11 +12,32 @@ function reducer(state = initialState, action) {
   const newState = { ...state };
 
   if (action.type === 'AGE_UP') { 
-    newState.age++;
+    // newState.age++;
+
+    return {
+      ...state,
+      age: state.age + action.value,
+      history: state.history.concat({id: Math.random(), age: state.age + action.value})
+    }
+
   }
 
   if (action.type === 'AGE_DOWN') { 
-    newState.age--;
+    // newState.age--;
+
+    return {
+      ...state,
+      age: state.age - action.value,
+      history: state.history.concat({id: Math.random(), age: state.age - action.value})
+    }
+  }
+
+  if (action.type === 'DEL_ITEM') { 
+
+    return {
+      ...state,
+      history: state.history.filter((el) => el.id !== action.key)
+    }
   }
 
   return newState;

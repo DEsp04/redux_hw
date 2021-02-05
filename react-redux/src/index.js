@@ -12,7 +12,7 @@ import { createStore } from 'redux'
 import reducer from './store/reducer';
 
 
-//store is created using reducer
+//store is created and we in the reducer
 const store = createStore(reducer);
 
 //we need to pass the store as a property to the Provider. This way the store is available to the entire application
