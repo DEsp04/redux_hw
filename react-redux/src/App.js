@@ -18,7 +18,7 @@ function App(props) {
   //   setAge(prevAge => prevAge - 1);
   // }
 
-  console.log(props)
+  // console.log(props)
 
   return (
     <div className="App">
